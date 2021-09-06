@@ -1,0 +1,44 @@
+﻿@using Movie_M.Client.Models
+@model Imdblist
+
+<style>
+    .cumtomize-item {
+        font-size: 124px;
+        color: #A2DBFA;
+        opacity: 0.2;
+    }
+
+    .ptitle {
+        margin-left: 7%;
+        margin-top: 1%;
+    }
+</style>
+
+<h1 class="ptitle">@ViewBag.Title</h1>
+@foreach (var item in Model.items)
+{
+    <div class="single-post-list-wrap style-two" style="background-color:aliceblue;">
+        <div class="media">
+            <div class="media-left mt-2 ml-2">
+                <img loading="lazy" style="height:200px;" src="@item.image" alt="img">
+            </div>
+            <div class="media-body align-self-center">
+                <div class="details">
+                    <h4 class="title"><a href="/search-imdb-id/@item.id">@item.title</a></h4>
+                    <div class="post-meta-single">
+                        <ul>
+                            <li><b>Imdb Rate: </b>@item.imDbRating </li>
+                        </ul>
+                        <ul>
+                            <li><b>Rate Count: </b>@item.imDbRatingCount </li>
+                        </ul>
+                    </div>
+                    <p>@item.crew</p>
+                </div>
+            </div>
+            <div class="media-body align-self-center">
+                <div class="cumtomize-item">@item.rank</div>
+            </div>
+        </div>
+    </div>
+}

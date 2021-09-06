@@ -1,0 +1,53 @@
+﻿
+@using Movie_M.Client.Models
+@model PreviousRoot
+@{
+    var url = "";
+}
+
+@{
+
+    if (Model!=null)
+    {
+        
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        @if (Model.image != null)
+                        {
+                            @if (Model.image.original != null && !string.IsNullOrEmpty(Model.image.original))
+                            {
+                                <img src="@Model.image.medium" class="img-fluid rounded-start" alt="...">
+                            }
+                        }
+                        else
+                        {
+                            <img src="~/img/online-cinema-art-movie-watching-260nw-700366096 (1).webp" class="img-fluid rounded-start" alt="...">
+                        }
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model.name</h5>
+                            <p class="card-text">@Html.Raw(Model.summary)</p>
+                            <p class="card-text"><small class="text-muted">@Model.runtime</small></p>
+                            @if (Model._links != null && Model._links.previousepisode != null)
+                            {
+                                var segmentsPrevious = new Uri(Model._links.previousepisode.href);
+                                url = segmentsPrevious.Segments[0] + segmentsPrevious.Segments[1] + segmentsPrevious.Segments[2];
+                                <a type="button" class="btn btn-success" asp-controller="Home" asp-action="SelforPrevious" asp-route-url="@url">Previous</a>
+                            }
+                            @if (Model._links != null && Model._links.self != null)
+                            {
+                                var segmentsSelf = new Uri(Model._links.self.href);
+                                url = segmentsSelf.Segments[0] + segmentsSelf.Segments[1] + segmentsSelf.Segments[2];
+                                <a type="button" class="btn btn-primary" asp-controller="Home" asp-action="Detail" asp-route-url="@url">Detail</a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+    }
+}
+

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "0ekTCSI9n9CQbAI/qMDyYzPk3ihpLqebP1JmeGwT8YhR1wmBC+EPnv0c15UAG264/PZ3fA7U5wjy6Gq4RQzkyg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MONSTER\\source\\repos\\Movie-M\\Movie_M.Api\\Movie_M.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\MONSTER\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.0\\swashbuckle.aspnetcore.swagger.6.2.0.nupkg.sha512",
+    "C:\\Users\\MONSTER\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.0\\swashbuckle.aspnetcore.swaggergen.6.2.0.nupkg.sha512",
+    "C:\\Users\\MONSTER\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.0\\swashbuckle.aspnetcore.swaggerui.6.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}

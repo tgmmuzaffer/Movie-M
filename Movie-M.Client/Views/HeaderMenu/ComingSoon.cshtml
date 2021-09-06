@@ -1,0 +1,90 @@
+﻿@using Movie_M.Client.Models
+@model ComingSoonList
+
+
+@{
+
+    if (Model.items.Count() < 1)
+    {
+        <style>
+            .row {
+                margin-right: -15px;
+                margin-left: -15px;
+                text-align: -webkit-center;
+                display: flow-root;
+            }
+        </style>
+    }
+    <style>
+        .ptitle {
+            margin-left: 9%;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            color: white;
+        }
+        hr {
+            border: 0;
+            clear: both;
+            display: block;
+            width: 96%;
+            background-color: #28527A;
+            height: 0.5px;
+        }
+    </style>
+
+}
+
+<div class="banner-area banner-inner-1 bg-black" id="banner">
+    <div class="banner-inner pt-5">
+        <div class="container">
+            <h1 class="ptitle">@ViewBag.Title</h1>
+
+            @foreach (var item in Model.items)
+            {
+                <div class="row" style="margin-bottom:15px;">
+                    <div class="col-lg-4">
+                        <div class="thumb after-left-top">
+                            <img loading="lazy" src="@item.image" alt="img">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 align-self-center">
+                        <div class="banner-details mt-4 mt-lg-0">
+                            <div class="post-meta-single">
+                                <ul>
+                                    <li><a class="tag-base tag-blue" href="#">@item.genres</a></li>
+                                    <li><a class="tag-base tag-blue" href="#">@item.releaseState</a></li>
+                                    <li class="date"><i class="fa fa-clock-o"></i>@item.year</li>
+                                </ul>
+                            </div>
+                            <h2> <a href="/search-imdb-id/@item.id">@item.title</a></h2>
+
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4  align-self-center">
+                        <div class="banner-details mt-4 mt-lg-0">
+                            <p>
+                                <b>Direktor(s): </b>@item.directors
+                            </p>
+                            <p>
+                                <b>Stars: </b>@item.stars
+                            </p>
+                            @if (!item.runtimeStr.Contains("N/A"))
+                            {
+                                <p><b>Run Time:  </b>@item.runtimeStr</p>
+                            }
+
+                            @if (!item.plot.Contains("N/A"))
+                            {
+                                <p style="word-wrap:normal"><b>Description:  </b>@item.plot</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            }
+
+
+        </div>
+    </div>
+</div>

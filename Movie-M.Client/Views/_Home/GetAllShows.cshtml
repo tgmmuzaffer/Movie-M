@@ -1,0 +1,63 @@
+﻿
+@using Movie_M.Client.Models.Dto
+@model List<TvShowDto>
+@{
+    var url = "";
+}
+<style>
+    img{
+        padding-top:10px;
+        padding-left:10px;
+    }
+</style>
+@{
+
+    if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        @if (item.Show.image != null)
+                        {
+                            @if (item.Show.image.original != null && !string.IsNullOrEmpty(item.Show.image.original))
+                            {
+                                <img src="@item.Show.image.medium" class="img-fluid rounded-start" alt="...">
+                            }
+                        }
+                        else
+                        {
+                            <img src="~/img/online-cinema-art-movie-watching-260nw-700366096 (1).webp" class="img-fluid rounded-start" alt="...">
+                        }
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Show.name</h5>
+                            <p class="card-text">@Html.Raw(item.Show.summary)</p>
+                            <p class="card-text">Runtime: <small class="text-muted">@item.Show.runtime</small>&nbsp;min.</p>
+                            @foreach (var genres in item.Show.genres)
+                            {
+                                <p class="card-text"><b class="text-muted">@genres</b></p>
+                            }
+                            @if (item.Show._links != null && item.Show._links.previousepisode != null)
+                            {
+                                var segmentsPrevious = new Uri(item.Show._links.previousepisode.href);
+                                url = segmentsPrevious.Segments[0] + segmentsPrevious.Segments[1] + segmentsPrevious.Segments[2];
+                                <a type="button" class="btn btn-success" asp-controller="Home" asp-action="Previous" asp-route-url="@url">Previous</a>
+                            }
+                            @if (item.Show._links != null && item.Show._links.self != null)
+                            {
+                                var segmentsSelf = new Uri(item.Show._links.self.href);
+                                url = segmentsSelf.Segments[0] + segmentsSelf.Segments[1] + segmentsSelf.Segments[2];
+                                <a type="button" class="btn btn-primary" asp-controller="Home" asp-action="Detail" asp-route-url="@url">Detail</a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}
+

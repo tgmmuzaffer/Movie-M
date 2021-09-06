@@ -1,0 +1,95 @@
+﻿@using Movie_M.Client.Models
+@model List<Movie>
+<style>
+    .ptitle {
+        margin-left: 9%;
+        padding-top: 1%;
+        padding-bottom: 1%;
+        color: white;
+    }
+
+    fa-trash-o {
+        display: block;
+        color: darkorange;
+        font-size: xx-large;
+        z-index: 999;
+    }
+
+        fa-trash-o:hover {
+            color: darkred;
+            z-index: 999;
+        }
+</style>
+@{ if (Model == null)
+    {
+        <div class="blog-page-area pd-bottom-80" style="background-color: #102950">
+            <div class="container">
+                <h1 class="ptitle">@ViewBag.Title</h1>
+                <div class="row">
+                    <h2 style="color:white;">Your Watch List is Empty</h2>
+                    <a href="/"></a>
+                </div>
+            </div>
+        </div>
+    }
+    if (Model != null && Model.Count > 0)
+    {
+        <div class="blog-page-area pd-bottom-80" style="background-color: #102950">
+            <div class="container">
+                <h1 class="ptitle">@ViewBag.Title</h1>
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-3">
+                            <div class="blog-details-page-inner">
+                                <div class="related-post">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-12 col-md-6">
+                                            <div class="single-post-wrap">
+                                                <div class="thumb">
+                                                    <img loading="lazy" src="@item.Poster" alt="img" style="max-height:450px;" />
+                                                    <a id="@item.imdbID" class="tag-base tag-red" onclick="throwtotrash(this.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                </div>
+                                                <div class="details">
+                                                    <div class="post-meta-single">
+                                                        <ul>
+                                                            <li style="color:white;"><i class="fa fa-clock-o"></i>@item.Year</li>
+                                                            <li style="color:white;"><i class="fa fa-user"></i>@item.Actors</li>
+                                                        </ul>
+                                                    </div>
+                                                    <h6 class="title mt-2" style="color:white;"><a href="search-imdb-id/@item.imdbID">@item.Title</a></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    }
+}
+<script type="text/javascript">
+    function throwtotrash(id) {
+        var value = JSON.stringify(id);
+        var xhr = new XMLHttpRequest;
+        xhr.open('POST', '/deletefromlist');
+        xhr.setRequestHeader('Content-type', 'application/json;')
+        xhr.responseType = 'JSON';
+        xhr.send(value);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                window.location('/Watch-List');
+                alert('Removed Successfully');
+            }
+            else {
+                alert('Somthink Went Wrong');
+            }
+        }
+    }
+</script>

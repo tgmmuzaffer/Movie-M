@@ -1,0 +1,107 @@
+﻿@using Movie_M.Client.Models
+@model ExtarnaLinks
+@{
+    int i = 1;
+}
+
+
+<style>
+    #td {
+        justify-content: end !important;
+    }
+
+    #th {
+        justify-content: center !important;
+    }
+</style>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center" style="margin-top:20px;">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">"@Model.title" External Links</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="table-wrap">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th id="th">Source</th>
+                                <th id="th">Link</th>
+                                <th id="th">#</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{
+                                if (Model.imDb != null && Model.imDb.url != null)
+                                {
+                                    <tr>
+                                        <td id="td">Imdb</td>
+                                        <td id="td">@Model.imDb.url</td>
+                                        <td id="td"><a href="@Model.imDb.url" class="btn btn-success" target="_blank">Go</a></td>
+                                    </tr>
+                                }
+                                if (Model.netflix != null && Model.netflix.url != null)
+                                {
+                                    <tr>
+                                        <td id="td">Netflix</td>
+                                        <td id="td">@Model.netflix.url</td>
+                                        <td id="td"><a href="@Model.netflix.url" class="btn btn-success" target="_blank">Go</a></td>
+                                    </tr>
+                                }
+                                if (Model.officialWebsite != null)
+                                {
+                                    <tr>
+                                        <td id="td">Offical Web site</td>
+                                        <td id="td">@Model.officialWebsite</td>
+                                        <td id="td"><a href="@Model.officialWebsite" class="btn btn-success" target="_blank">Go</a></td>
+                                    </tr>
+                                }
+
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @{
+            if (Model.wikipediaUrls.Count > 0)
+            {
+                <div class="row justify-content-center" style="margin-top:20px;">
+                    <div class="col-md-6 text-center mb-5">
+                        <h2 class="heading-section">Wikipedia Data Links</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="table-wrap">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th id="th">No</th>
+                                        <th id="th">Language</th>
+                                        <th id="th">Link</th>
+                                    </tr>
+                                </thead>
+                                @foreach (var item in Model.wikipediaUrls)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <th id="th" scope="row">@i</th>
+                                            <td id="td">@item.language</td>
+                                            <td id="td"><a href="@item.url" class="btn btn-success" target="_blank">@item.title</a></td>
+                                        </tr>
+                                    </tbody>
+                                    i++;
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</section>
