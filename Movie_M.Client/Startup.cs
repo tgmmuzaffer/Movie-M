@@ -40,7 +40,8 @@ namespace Movie_M.Client
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = false;
-            }); services.ConfigureApplicationCookie(options =>
+            });
+            services.ConfigureApplicationCookie(options =>
             {
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
@@ -61,15 +62,16 @@ namespace Movie_M.Client
             //services.AddSingleton<IRecurringNetflixJob, RecurringNetflixJob>();
 
             services.AddAuthentication()
-        .AddGoogle(googleOptions =>
-        {
-            googleOptions.ClientId = "277229731378-iqjonc4gus2uqo1npbdlhuekisfkhbp1.apps.googleusercontent.com";
-            googleOptions.ClientSecret = "ZflWc7BHfRxnXCxsLHM9v20D";
-        })
-            .AddTwitter(twitterOptions => {
-                twitterOptions.ConsumerKey = "clientId";
-                twitterOptions.ConsumerSecret = "clientsecret";
-            });
+                .AddGoogle(googleOptions =>
+                {
+                    googleOptions.ClientId = "277229731378-iqjonc4gus2uqo1npbdlhuekisfkhbp1.apps.googleusercontent.com";
+                    googleOptions.ClientSecret = "ZflWc7BHfRxnXCxsLHM9v20D";
+                })
+                .AddTwitter(twitterOptions =>
+                {
+                    twitterOptions.ConsumerKey = "xbQ10s72W70Wmgd1pPHoTT3vQ";
+                    twitterOptions.ConsumerSecret ="NqcmMBkFzErZ7CkjogqxlNIe29X8EzgOkIHhRyD3d7URO2IMdM";
+                });
             //.AddFacebook(facebookOptions => { ... });
 
         }
@@ -95,7 +97,7 @@ namespace Movie_M.Client
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                
+
 
                 endpoints.MapControllerRoute(
                     name: "default",

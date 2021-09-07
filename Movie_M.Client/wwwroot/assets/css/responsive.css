@@ -3,8 +3,8 @@
 ---------------------------------------------------*/
 @media all and (min-width: 1600px) {
 	.searchimg {
-		z-index: 9999;
-		position: absolute;
+/*		z-index: 9999;
+*/		position: absolute;
 		left: 75%;
 		top: 10.5%;
 		cursor: pointer;
@@ -52,8 +52,8 @@
 }
 @media all and (max-width: 1599px) {
 	.searchimg {
-		z-index: 9999;
-		position: absolute;
+/*		z-index: 9999;
+*/		position: absolute;
 		left: 75%;
 		top: 10.5%;
 		cursor: pointer;
@@ -106,8 +106,8 @@
 }
 @media all and (max-width: 1199px) {
 	.searchimg {
-		z-index: 9999;
-		position: absolute;
+/*		z-index: 9999;
+*/		position: absolute;
 		left: 75%;
 		top: 10.5%;
 		cursor: pointer;
@@ -196,8 +196,8 @@
 }
 @media all and (max-width: 991px) {
 	.searchimg {
-		z-index: 9999;
-		position: absolute;
+/*		z-index: 9999;
+*/		position: absolute;
 		left: 75%;
 		top: 10.5%;
 		cursor: pointer;
@@ -245,8 +245,8 @@
 
 @media all and (max-width: 767px) {
 	.searchimg {
-		z-index: 9999;
-		position: absolute;
+/*		z-index: 9999;
+*/		position: absolute;
 		left: 75%;
 		top: 10.5%;
 		cursor: pointer;
@@ -278,8 +278,8 @@
 
 @media all and (max-width: 575px) {
 	.searchimg {
-		z-index: 9999;
-		position: absolute;
+/*		z-index: 9999;
+*/		position: absolute;
 		left: 75%;
 		top: 10.5%;
 		cursor: pointer;
@@ -423,8 +423,8 @@
 
 @media all and (max-width: 360px) {
 	.searchimg {
-		z-index: 9999;
-		position: absolute;
+/*		z-index: 9999;
+*/		position: absolute;
 		left: 75%;
 		top: 10.5%;
 		cursor: pointer;
