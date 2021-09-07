@@ -48,7 +48,8 @@
                                             <div class="single-post-wrap">
                                                 <div class="thumb">
                                                     <img loading="lazy" src="@item.Poster" alt="img" style="max-height:450px;" />
-                                                    <a id="@item.imdbID" class="tag-base tag-red" onclick="throwtotrash(this.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                    <a id="@item.imdbID" class="tag-base tag-red" onclick="throwtotrash(this.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    <a id="@item.imdbID" class="tag-base-bell tag-green"onclick="sendNotify(this.id)"><i class="fa fa-bell" aria-hidden="true"></i></a>
                                                 </div>
                                                 <div class="details">
                                                     <div class="post-meta-single">
@@ -79,6 +80,23 @@
         var value = JSON.stringify(id);
         var xhr = new XMLHttpRequest;
         xhr.open('POST', '/deletefromlist');
+        xhr.setRequestHeader('Content-type', 'application/json;')
+        xhr.responseType = 'JSON';
+        xhr.send(value);
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                window.location('/Watch-List');
+                alert('Removed Successfully');
+            }
+            else {
+                alert('Somthink Went Wrong');
+            }
+        }
+    }
+    function sendNotify(id) {
+        var value = JSON.stringify(id);
+        var xhr = new XMLHttpRequest;
+        xhr.open('POST', '/sendNotify');
         xhr.setRequestHeader('Content-type', 'application/json;')
         xhr.responseType = 'JSON';
         xhr.send(value);

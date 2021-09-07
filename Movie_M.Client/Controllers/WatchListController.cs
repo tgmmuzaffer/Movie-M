@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Movie_M.Client.Controllers
 {
@@ -114,6 +115,11 @@ namespace Movie_M.Client.Controllers
                     return Json(0);
                 }
             }
+        }
+        [HttpPost("sendNotify")]
+        public IActionResult SendNotify([FromBody] string id)
+        {
+            return Json(0);
         }
     }
 }

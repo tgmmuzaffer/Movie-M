@@ -52,20 +52,24 @@ namespace Movie_M.Client
             //services.AddHangfire(conf => conf.UseMemoryStorage());
             //services.AddHangfireServer();
             services.AddControllersWithViews();
+            services.AddRazorPages();
             services.AddMemoryCache();
             services.AddSession(opt =>
             {
                 opt.IdleTimeout = System.TimeSpan.FromDays(10);
             });
             //services.AddSingleton<IRecurringNetflixJob, RecurringNetflixJob>();
-            services.AddRazorPages();
+
             services.AddAuthentication()
         .AddGoogle(googleOptions =>
         {
             googleOptions.ClientId = "277229731378-iqjonc4gus2uqo1npbdlhuekisfkhbp1.apps.googleusercontent.com";
             googleOptions.ClientSecret = "ZflWc7BHfRxnXCxsLHM9v20D";
-        });
-            //.AddTwitter(twitterOptions => { ... })
+        })
+            .AddTwitter(twitterOptions => {
+                twitterOptions.ConsumerKey = "clientId";
+                twitterOptions.ConsumerSecret = "clientsecret";
+            });
             //.AddFacebook(facebookOptions => { ... });
 
         }
@@ -91,6 +95,8 @@ namespace Movie_M.Client
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
+                
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

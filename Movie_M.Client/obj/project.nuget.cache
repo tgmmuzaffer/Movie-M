@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "TXS73VHoTiPGO5Qc7fpp2Xlv2Tc6v/ReMZVIh5uUJ3EbFg/sYcRL0QrvkoWh6yxFqnJXy06xYqEqiXRabZsn+A==",
+  "dgSpecHash": "7yK7drf3gda3E+hZVZ85P6oWKQGpHXNpz5zEkqyZu+upAteIWQTcOSTABsyRKEg181ZfNlaqgwVmLNeV/sYxmQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\MONSTER\\source\\repos\\Movie-M\\Movie_M.Client\\Movie_M.Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\3.1.15\\microsoft.aspnetcore.authentication.google.3.1.15.nupkg.sha512",
+    "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.aspnetcore.authentication.twitter\\3.1.15\\microsoft.aspnetcore.authentication.twitter.3.1.15.nupkg.sha512",
     "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.15\\microsoft.aspnetcore.cryptography.internal.3.1.15.nupkg.sha512",
     "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.15\\microsoft.aspnetcore.cryptography.keyderivation.3.1.15.nupkg.sha512",
     "C:\\Users\\MONSTER\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

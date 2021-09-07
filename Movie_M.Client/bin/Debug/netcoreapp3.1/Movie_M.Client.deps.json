@@ -32,6 +32,7 @@
       "Movie_M.Client/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.Google": "3.1.15",
+          "Microsoft.AspNetCore.Authentication.Twitter": "3.1.15",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.15",
           "Microsoft.AspNetCore.Identity.UI": "3.1.15",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "3.1.18",
@@ -317,6 +318,17 @@
         },
         "compile": {
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Google.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Twitter/3.1.15": {
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Twitter.dll": {
+            "assemblyVersion": "3.1.15.0",
+            "fileVersion": "3.100.1521.21512"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Twitter.dll": {}
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.15": {
@@ -3981,6 +3993,13 @@
       "sha512": "sha512-mPRFbSG8skxnTTa9Epnacw8q9eLD2Cpofl88erM32BEMXsuOO/JFeRsTkEyP/LZs0O+fUkhj/j5CxTW/WSlh8g==",
       "path": "microsoft.aspnetcore.authentication.google/3.1.15",
       "hashPath": "microsoft.aspnetcore.authentication.google.3.1.15.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Twitter/3.1.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fLTTSzD83dbBs91L8JwEMVenqWBNxSMx1cfqFIrzu4VC9YwuppnTVk56RYW9+CzUi9IGz59C8Y19moplKhapAw==",
+      "path": "microsoft.aspnetcore.authentication.twitter/3.1.15",
+      "hashPath": "microsoft.aspnetcore.authentication.twitter.3.1.15.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.15": {
       "type": "package",

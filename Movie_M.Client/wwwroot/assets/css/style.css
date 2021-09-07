@@ -698,6 +698,14 @@ ul {
   border-radius: 3px;
   font-size: 15px;
 }
+.tag-base-bell {
+    height: 28px;
+    line-height: 28px;
+    padding: 0 14px;
+    display: inline-block;
+    border-radius: 3px;
+    font-size: 15px;
+}
 .tag-base .notice {
   height: 28px;
   width: 28px;
@@ -772,16 +780,16 @@ ul {
 }
 
 .tag-green {
-  background: #00bff3;
-  color: #fff;
+    background: #85EF47;
+    color: #fff;
 }
 .tag-green:hover {
   background: #18a9d1;
   color: #fff;
 }
-.tag-green .notice {
-  background: #18a9d1;
-}
+    .tag-green .notice {
+        background: #00BD56;
+    }
 
 .tag-light-green {
   background: #8dc63f;
@@ -2346,6 +2354,12 @@ ul {
 }
 .single-post-wrap .thumb .tag-base {
   position: absolute;
+  left: 68px;
+  top: 19px;
+  z-index: 3;
+}
+.single-post-wrap .thumb .tag-base-bell {
+  position: absolute;
   left: 17px;
   top: 19px;
   z-index: 3;
@@ -3532,3 +3546,9 @@ ul {
 .widget_nav_menu li:last-child:after {
   display: none;
 }
+/*span.Google {
+    background: url(../img/icons8-google-48.png) no-repeat;
+    float: left;
+    width: 10px;
+    height: 40px;
+}*/

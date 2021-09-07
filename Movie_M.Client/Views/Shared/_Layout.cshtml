@@ -83,12 +83,13 @@
                         <li class="current-menu-item">
                             <a href="/most-popular">Most Popular</a>
                         </li>
-                        <li class="current-menu-item"style="@css">
+                        <li class="current-menu-item" style="@css">
                             <a href="/Watch-List">Watch List</a>
                         </li>
                     </ul>
                 </div>
             </div>
+            <partial name="_LoginPartial" />
         </nav>
         @* style="z-index:9999;background: transparent;position: absolute;left: 75%;top: 10.5%; cursor:pointer; display:inline-flex" *@
         <div class="col-lg-1 searchimg">
@@ -193,6 +194,7 @@
     <div class="back-to-top">
         <span class="back-top"><i class="fa fa-angle-up"></i></span>
     </div>
+    @RenderSection("Scripts", required: false)
     <!-- back to top area end -->
     <!-- all plugins here -->
     <script src="~/assets/js/vendor.js"></script>

@@ -6,38 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\**" />
-    <Compile Remove="Migrations\**" />
-    <Content Remove="Areas\**" />
-    <Content Remove="Migrations\**" />
-    <EmbeddedResource Remove="Areas\**" />
-    <EmbeddedResource Remove="Migrations\**" />
-    <None Remove="Areas\**" />
-    <None Remove="Migrations\**" />
+    <None Remove="Areas\Identity\img\icons8-google-48.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="Areas\Identity\Data\Movie_MClientContext.cs" />
-    <Compile Include="Areas\Identity\Data\Movie_MClientUser.cs" />
-    <Compile Include="Areas\Identity\IdentityHostingStartup.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\ConfirmEmail.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\ExternalLogin.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\ForgotPassword.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\Login.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\Logout.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\Manage\Email.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\Manage\ManageNavPages.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\Register.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\ResetPassword.cshtml.cs" />
-    <Compile Include="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml.cs" />
-    <Compile Include="Migrations\20210906212648_init.cs" />
-    <Compile Include="Migrations\20210906212648_init.Designer.cs" />
-    <Compile Include="Migrations\Movie_MClientContextModelSnapshot.cs" />
+    <Content Include="Areas\Identity\img\icons8-google-48.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Twitter" Version="3.1.15" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.15" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.15" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.18" />
@@ -47,25 +28,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\Login.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\Logout.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\Register.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
-    <None Include="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
-    <None Include="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
-    <None Include="Areas\Identity\Pages\_ViewImports.cshtml" />
-    <None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
   </ItemGroup>
 
 </Project>
