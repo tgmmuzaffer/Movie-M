@@ -1,11 +1,17 @@
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Primitives;
+using Movie_M.Client.RecurringJob;
 using Movie_M.Client.Services;
 using System;
 using System.Collections.Generic;
@@ -25,7 +31,7 @@ namespace Movie_M.Client
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -50,8 +56,8 @@ namespace Movie_M.Client
                 options.SlidingExpiration = true;
             });
             services.AddTransient<IEmailSender, EmailSender>();
-            //services.AddHangfire(conf => conf.UseMemoryStorage());
-            //services.AddHangfireServer();
+            services.AddHangfire(conf => conf.UseMemoryStorage());
+            services.AddHangfireServer();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddMemoryCache();
@@ -59,7 +65,8 @@ namespace Movie_M.Client
             {
                 opt.IdleTimeout = System.TimeSpan.FromDays(10);
             });
-            //services.AddSingleton<IRecurringNetflixJob, RecurringNetflixJob>();
+            //services.AddHttpContextAccessor();
+            services.AddSingleton<IRecurringNetflixJob, RecurringNetflixJob>();
 
             services.AddAuthentication()
                 .AddGoogle(googleOptions =>
@@ -72,11 +79,9 @@ namespace Movie_M.Client
                     twitterOptions.ConsumerKey = "xbQ10s72W70Wmgd1pPHoTT3vQ";
                     twitterOptions.ConsumerSecret ="NqcmMBkFzErZ7CkjogqxlNIe29X8EzgOkIHhRyD3d7URO2IMdM";
                 });
-            //.AddFacebook(facebookOptions => { ... });
-
         }
         //, IBackgroundJobClient backgroundJobClient, IRecurringJobManager jobManager, IServiceProvider serviceProvider
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IBackgroundJobClient backgroundJobClient, IRecurringJobManager jobManager, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -89,16 +94,13 @@ namespace Movie_M.Client
             }
             app.UseSession();
             app.UseHttpsRedirection();
-            //app.UseHangfireDashboard();
+            app.UseHangfireDashboard();
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-
-
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
@@ -107,7 +109,6 @@ namespace Movie_M.Client
 
             //backgroundJobClient.Enqueue(() => Console.WriteLine("Hello Hangfire job!"));
             //jobManager.AddOrUpdate("Run", () => serviceProvider.GetService<IRecurringNetflixJob>().GetMoviePublishInNetflix(), "* * * * *", TimeZoneInfo.Local);
-
         }
     }
 }

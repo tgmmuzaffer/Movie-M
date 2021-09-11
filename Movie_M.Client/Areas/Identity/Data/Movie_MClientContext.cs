@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Movie_M.Client.Areas.Identity.Data;
+using Movie_M.Client.Areas.Identity.Entity;
 
 namespace Movie_M.Client.Data
 {
@@ -15,7 +16,8 @@ namespace Movie_M.Client.Data
             : base(options)
         {
         }
-
+        public virtual DbSet<Notation> Notations { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Movie_M.Client.Areas.Identity.Data;
+using Movie_M.Client.RecurringJob;
 
 namespace Movie_M.Client.Controllers
 {
@@ -15,9 +18,13 @@ namespace Movie_M.Client.Controllers
     {
         private readonly HttpClient _httpClient;
         private readonly IMemoryCache _memoryCache;
-        private readonly MemoryCacheEntryOptions _memoryCacheEntryOptions;
-        public HomeController(IMemoryCache memoryCache)
+        private readonly MemoryCacheEntryOptions _memoryCacheEntryOptions; 
+        private readonly UserManager<Movie_MClientUser> _userManager;
+        private readonly RecurringNetflixJob _recurringNetflixJob;
+        public HomeController(IMemoryCache memoryCache, UserManager<Movie_MClientUser> userManager, RecurringNetflixJob recurringNetflixJob)
         {
+            _recurringNetflixJob = recurringNetflixJob;
+            _userManager = userManager;
             _memoryCache = memoryCache;
             _httpClient = new HttpClient();
             _memoryCacheEntryOptions = new MemoryCacheEntryOptions
@@ -72,6 +79,13 @@ namespace Movie_M.Client.Controllers
                 return View(movieList);
 
             }
+
+            _recurringNetflixJob.GetMoviePublishInNetflix(this.HttpContext);
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var id = _userManager.GetUserId(User);
+            this.HttpContext.Session.SetString(id, "session setstring deneme");
+
+
             return View(oursuggested);
         }
     }
