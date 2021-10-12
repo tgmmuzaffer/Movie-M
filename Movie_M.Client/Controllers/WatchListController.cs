@@ -8,15 +8,27 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Movie_M.Client.Services;
+using Movie_M.Client.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using Movie_M.Client.Areas.Identity.Entity;
 
 namespace Movie_M.Client.Controllers
 {
     public class WatchListController : Controller
     {
         private readonly HttpClient _httpClient;
-        public WatchListController()
+        private readonly IMovieNotationService _notationService;
+        private readonly UserManager<Movie_MClientUser> _userManager;
+        private readonly SignInManager<Movie_MClientUser> _signInManager;
+
+
+        public WatchListController(IMovieNotationService notationService, UserManager<Movie_MClientUser> userManager, SignInManager<Movie_MClientUser> signInManager)
         {
             _httpClient = new HttpClient();
+            _notationService = notationService;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
         [Route("Watch-List")]
         public IActionResult WatchList()
@@ -38,7 +50,7 @@ namespace Movie_M.Client.Controllers
                     {
                         list = splitedContent;
                     }
-                    var movieList = new List<Movie>();
+                    var movieList = new List<Models.Movie>();
                     foreach (var item in list)
                     {
 
@@ -54,7 +66,7 @@ namespace Movie_M.Client.Controllers
                             return View();
                         }
                         var reededres = response.Content.ReadAsStringAsync().Result;
-                        var des_res = JsonConvert.DeserializeObject<Movie>(reededres);
+                        var des_res = JsonConvert.DeserializeObject<Models.Movie>(reededres);
                         movieList.Add(des_res);
                     }
                     return View(movieList);
@@ -119,7 +131,41 @@ namespace Movie_M.Client.Controllers
         [HttpPost("sendNotify")]
         public IActionResult SendNotify([FromBody] string id)
         {
-            return Json(0);
+            try
+            {
+                if (!_signInManager.IsSignedIn(User))
+                {
+                    return LocalRedirect("/Identity/Account/Login");
+                }
+                if (_notationService.Get(id) == null)
+                {
+                    System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+                    var userdata = _userManager.GetUserAsync(User).Result;
+                    List<Areas.Identity.Entity.Movie> movies = new List<Areas.Identity.Entity.Movie>();
+                    Areas.Identity.Entity.Movie movie = new Areas.Identity.Entity.Movie
+                    {
+                        MovieId = id
+                    };
+                    movies.Add(movie);
+                    Notation notation = new Notation
+                    {
+                        Mail = userdata.Email,
+                        UserId = userdata.Id,
+                        UserName = userdata.NormalizedUserName,
+                        MovieId = id,
+                        Movies = movies
+                    };
+                    _notationService.Add(notation);
+                    return Json(1);
+                }
+                return Json(0);
+                
+            }
+            catch (Exception)
+            {
+
+                return Json(0);
+            }
         }
     }
 }

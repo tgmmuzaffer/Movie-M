@@ -1,5 +1,17 @@
 ﻿@using Movie_M.Client.Models
+@using Movie_M.Client.Areas.Identity.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Movie_MClientUser> SignInManager
 @model List<Movie>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    bool IsSign = true;
+}
+else
+{
+    bool IsSign = false;
+}
 <style>
     .ptitle {
         margin-left: 9%;
@@ -49,7 +61,7 @@
                                                 <div class="thumb">
                                                     <img loading="lazy" src="@item.Poster" alt="img" style="max-height:450px;" />
                                                     <a id="@item.imdbID" class="tag-base tag-red" onclick="throwtotrash(this.id)"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                                    <a id="@item.imdbID" class="tag-base-bell tag-green"onclick="sendNotify(this.id)"><i class="fa fa-bell" aria-hidden="true"></i></a>
+                                                    <a id="@item.imdbID" class="tag-base-bell tag-green" onclick="sendNotify(this.id)"><i class="fa fa-bell" aria-hidden="true"></i></a>
                                                 </div>
                                                 <div class="details">
                                                     <div class="post-meta-single">
@@ -85,11 +97,11 @@
         xhr.send(value);
         xhr.onload = function () {
             if (xhr.status == 200) {
-                window.location('/Watch-List');
+                window.location.assign('/Watch-List');
                 alert('Removed Successfully');
             }
             else {
-                alert('Somthink Went Wrong');
+                alert('Somthink Went Wrong Please Call Muzaffer');
             }
         }
     }
@@ -102,11 +114,11 @@
         xhr.send(value);
         xhr.onload = function () {
             if (xhr.status == 200) {
-                window.location('/Watch-List');
-                alert('Removed Successfully');
+                window.location.assign('/Watch-List');
+                alert('Your Notify is Successfully Recorded');
             }
             else {
-                alert('Somthink Went Wrong');
+                alert('Somthink Went Wrong Please Call Muzaffer');
             }
         }
     }

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Movie_M.Client.Areas.Identity.Data;
+using Movie_M.Client.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,23 +40,11 @@ namespace Movie_M.Client.RecurringJob
         //    var movieidList = _memoryCache.Get(inMemoryKey);
         //    Console.WriteLine("mzffr");
         //}
-      
-
-        public void GetMoviePublishInNetflix(HttpContext _context)
+        private readonly UserManager<Movie_MClientUser> _userManager;
+        private readonly MovieNotationService _movieNotationService;
+        public void GetMoviePublishInNetflix()
         {
-            var userName = "";
-            if (_context != null)
-            {
-                if (_context.User != null)
-                {
-                    var identity = _context.User.Identity;
-
-                    if (identity != null && identity.IsAuthenticated)
-                    {
-                        userName = identity.Name;
-                    }
-                }
-            }
+           
         }
     }
 }

@@ -90,7 +90,7 @@ namespace Movie_M.Client.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Hi my friend; </br>  Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}' target='_blank'>clicking here</a>.");
+                        $"Hi my friend; </br>  Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}' target='_self'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

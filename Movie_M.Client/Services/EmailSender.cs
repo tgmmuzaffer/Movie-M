@@ -20,6 +20,7 @@ namespace Movie_M.Client.Services
                 msg.Subject = subject;
                 msg.Body = htmlMessage;
                 msg.IsBodyHtml = true;
+                msg.Priority = MailPriority.High;
 
                 using var client = new SmtpClient("smtp.gmail.com", 587);
                 client.Port = 587;

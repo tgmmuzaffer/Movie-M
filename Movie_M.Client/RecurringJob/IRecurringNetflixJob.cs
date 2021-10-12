@@ -8,6 +8,6 @@ namespace Movie_M.Client.RecurringJob
 {
     public interface IRecurringNetflixJob
     {
-        void GetMoviePublishInNetflix(HttpContext _context);
+        void GetMoviePublishInNetflix();
     }
 }

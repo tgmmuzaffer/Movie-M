@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Primitives;
+using Movie_M.Client.Areas.Identity.Entity;
 using Movie_M.Client.RecurringJob;
 using Movie_M.Client.Services;
 using System;
@@ -31,7 +32,7 @@ namespace Movie_M.Client
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -57,7 +58,7 @@ namespace Movie_M.Client
             });
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddHangfire(conf => conf.UseMemoryStorage());
-            services.AddHangfireServer();
+            //services.AddHangfireServer();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddMemoryCache();
@@ -66,7 +67,7 @@ namespace Movie_M.Client
                 opt.IdleTimeout = System.TimeSpan.FromDays(10);
             });
             //services.AddHttpContextAccessor();
-            services.AddSingleton<IRecurringNetflixJob, RecurringNetflixJob>();
+            services.AddScoped<IMovieNotationService, MovieNotationService>();
 
             services.AddAuthentication()
                 .AddGoogle(googleOptions =>
@@ -81,7 +82,7 @@ namespace Movie_M.Client
                 });
         }
         //, IBackgroundJobClient backgroundJobClient, IRecurringJobManager jobManager, IServiceProvider serviceProvider
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IBackgroundJobClient backgroundJobClient, IRecurringJobManager jobManager, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -94,7 +95,7 @@ namespace Movie_M.Client
             }
             app.UseSession();
             app.UseHttpsRedirection();
-            app.UseHangfireDashboard();
+            //app.UseHangfireDashboard();
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
